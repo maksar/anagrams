@@ -14,17 +14,32 @@ describe Game do
     end
 
     context 'with one player' do
-      let(:player) { stub(:name => 'Alice') }
-      before { game.add_player(player) }
+      let(:player) { game.add_player(stub(:name => 'Alice')) }
 
       it 'accepts correct anagram' do
-        player.should_receive(:add_word)
         game.write_word(player, 'sam')
+        player.words.should include 'sam'
       end
 
       it 'declines incorrect anagram' do
-        player.should_not_receive(:add_word)
         game.write_word(player, 'wrong')
+        player.words.should be_empty
+      end
+    end
+
+    context 'with two players' do
+      let(:alice) { game.add_player(stub(:name => 'Alice')) }
+      let(:bob) { game.add_player(stub(:name => 'Bob')) }
+
+      before {
+        game.write_word(alice, 'sam')
+        game.write_word(alice, 'mas')
+        game.write_word(bob, 'mas')
+        game.write_word(bob, 'maple')
+      }
+
+      it 'shows which words were used by other players' do
+        game.duplicates(bob).should eq %w(mas)
       end
     end
   end
