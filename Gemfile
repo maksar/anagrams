@@ -1,4 +1,8 @@
 source 'http://rubygems.org'
 
 gem 'rake'
-gem 'rspec'
+
+group :test do
+  gem 'rspec'
+  gem 'simplecov'
+end
