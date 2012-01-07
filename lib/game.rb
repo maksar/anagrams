@@ -20,6 +20,6 @@ class Game
   private
 
   def valid_word? word
-    Histogram.for(word).substract(anagram).values.all? { |v| v >= 0 }
+    (@anagram - word).positive?
   end
 end

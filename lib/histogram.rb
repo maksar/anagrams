@@ -1,14 +1,20 @@
 class Histogram
 
-  def self.for(word)
-    Histogram.new word
+  class ::String
+    def - string
+      Histogram.new(self) - string
+    end
   end
 
-
-  def substract word
-    @histogram.each_with_object(Histogram.for(word).histogram) { |(char, count), histogram|
+  def - word
+    @histogram = Histogram.new(word).histogram.each_with_object(@histogram) { |(char, count), histogram|
       histogram[char] = (histogram[char] || 0) - count
     }
+    self
+  end
+
+  def positive?
+    @histogram.values.all? { |count| count >= 0 }
   end
 
   protected
