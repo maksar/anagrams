@@ -5,7 +5,6 @@ class Game
   def initialize(anagram)
     @players = {}
     @anagram = anagram
-    @histogram = create_histogram anagram
   end
 
   def add_player player
