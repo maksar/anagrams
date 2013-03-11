@@ -1,11 +1,13 @@
-require 'histogram'
+require_relative 'histogram'
+require_relative 'player_session'
+
 require 'active_support/core_ext/hash/except'
 
 class Game
   attr_reader :players
   attr_reader :anagram
 
-  def initialize(anagram)
+  def initialize anagram
     @players = {}
     @anagram = anagram
   end

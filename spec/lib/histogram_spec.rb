@@ -1,12 +1,12 @@
-require 'spec_helper'
-require 'histogram'
+require_relative '../spec_helper'
+require_relative '../../lib/histogram'
 
 describe Histogram do
   context 'substraction' do
     it 'substracts histograms' do
-      ('sample' - 'map').should be_positive
-      ('sample' - 'sample').should be_positive
-      ('sample' - 'example').should_not be_positive
+      ('sample' - 'map').positive?.must_equal true
+      ('sample' - 'sample').positive?.must_equal true
+      ('sample' - 'example').positive?.must_equal false
     end
   end
 end
