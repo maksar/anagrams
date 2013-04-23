@@ -4,6 +4,9 @@ SimpleCov.start do
   add_filter 'spec/'
 end
 
+require 'coveralls'
+Coveralls.wear!
+
 require 'rr'
 require 'minitest/autorun'
 require 'minitest/pride'

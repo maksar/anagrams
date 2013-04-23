@@ -11,3 +11,5 @@ group :test do
   gem 'simplecov'
   gem 'autotest'
 end
+
+gem 'coveralls', require: false
